@@ -49,8 +49,6 @@ def course_list(subject):
     if not response:
         return "API call failed"
     courses = response.json()["data"]["classes"]
-    subjects = [course["subject"] for course in courses]
     numbers = [course["catalogNbr"] for course in courses]
     titles = [course["titleLong"] for course in courses]
-    return "work in progress"
-#    return "<br>".join([subjects[i] + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
+    return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
