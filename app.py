@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from passlib.hash import sha256_crypt
+import smtplib
+from os import urandom
 import requests
 
 app = Flask(__name__)
@@ -9,6 +11,7 @@ mongo = PyMongo(app)
 
 @app.route("/post-signup", methods=["POST"])
 def post_signup():
+    # Save the user's information to the database
     name = request.form["name"]
     email = request.form["email"]
     grad_year = request.form["grad_year"]
@@ -20,8 +23,27 @@ def post_signup():
     if len(users.find({"email": email})) > 0:
         return "email already taken"
     hashed_password = sha256_crypt.hash(password)
-    users.insert_one({"name": name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password})
-    return "signup successful"
+    verification_code = urandom(24).hex()
+    while users.find_one({"verification_code": verification_code}):
+        verification_code = urandom(24).hex()
+    users.insert_one({"name": name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password, "verification_code": verification_code})
+    # Send the verification email
+    server = smtplib.SMTP_SSL("smtp.gmail.com")
+    from_address = "apf75@cornell.edu"
+    server.login(from_address)
+    text = "Subject: CornField email verification\n\nPlease follow this link to verify your email address: http://localhost:5000/verify/" + verification_code
+    server.sendmail(from_address, email, text)
+    server.quit()
+    return "signup successful, verification email sent"
+
+@app.route("/verify/<verification_code>")
+def verify(verification_code):
+    users = mongo.db.users
+    user = users.find_one({"verification_code": verification_code})
+    if not user:
+        return "verification code invalid"
+    users.update_one({"verification_code": verification_code}, {"$unset": {"verification_code": ""}})
+    return "verification successful"
 
 @app.route("/post-login", methods=["POST"])
 def post_login():
