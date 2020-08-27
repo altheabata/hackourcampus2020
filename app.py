@@ -37,19 +37,19 @@ def post_signup():
     college = request.form["college"]
     password = request.form["password"]
     users = mongo.db.users
-    if "email"[-12:] != "@cornell.edu":
+    if email[-12:] != "@cornell.edu":
         return "must use a cornell email"
-    if len(users.find({"email": email})) > 0:
+    if users.find_one({"email": email}):
         return "email already taken"
     hashed_password = sha256_crypt.hash(password)
     verification_code = urandom(24).hex()
     while users.find_one({"verification_code": verification_code}):
         verification_code = urandom(24).hex()
-    users.insert_one({"name": name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password, "verification_code": verification_code})
+    users.insert_one({"first_name": first_name, "last_name": last_name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password, "verification_code": verification_code})
     # Send the verification email
     server = smtplib.SMTP_SSL("smtp.gmail.com")
-    from_address = "apf75@cornell.edu"
-    server.login(from_address)
+    from_address = "cornfieldapp@gmail.com"
+    server.login(from_address, "digjid-Dehge9-cambot")
     text = "Subject: CornField email verification\n\nPlease follow this link to verify your email address: http://localhost:5000/verify/" + verification_code
     server.sendmail(from_address, email, text)
     server.quit()
