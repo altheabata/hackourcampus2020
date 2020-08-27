@@ -70,25 +70,29 @@ def post_login():
     else:
         return "credentials do not match records"
 
-@app.route("/subject-list")
+@app.route("/subjects")
 def subject_list():
     response = requests.get("https://classes.cornell.edu/api/2.0/config/subjects.json?roster=FA20")
     if not response:
         return "API call failed"
     subjects = response.json()["data"]["subjects"]
     subject_names = [subject["descr"] for subject in subjects]
-    return render_template("subjects.html", subjects=subject_names)
+    subject_abbrievs = [subject["value"] for subject in subjects]
+    subjects = [{"name": subject_names[i], "abbrieviation": subject_abbrievs[i]} for i in range(len(subjects))]
+    return render_template("subjects.html", subjects=subjects)
 #    return "<br>".join(subject_names)
 
-@app.route("/course-list/<subject>")
+@app.route("/courses/<subject>")
 def course_list(subject):
     response = requests.get("https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA20&subject=" + subject)
     if not response:
         return "API call failed"
     courses = response.json()["data"]["classes"]
     numbers = [course["catalogNbr"] for course in courses]
-    titles = [course["titleLong"] for course in courses]
-    return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
+    names = [course["titleLong"] for course in courses]
+    courses = [{"number": numbers[i], "name": names[i]} for i in range(len(courses))]
+    return render_template("courses.html", courses=courses, subject=subject)
+#    return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
 
 @app.route("/add-course/<subject>/<number>")
 def add_course(subject, number):
