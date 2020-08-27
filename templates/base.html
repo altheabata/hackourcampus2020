@@ -29,7 +29,7 @@
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <button class="gradient-button button-signup">Sign Up</button>
+                    <button class="gradient-button button-signup"><a href="/signup">Sign Up</a></button>
                 </li>
                 <li class="nav-item">
                     <button class="gradient-button button-login">Login</button>
@@ -38,11 +38,7 @@
         </div>
         
         </nav>
-        
-        
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

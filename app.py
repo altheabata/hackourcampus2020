@@ -23,10 +23,15 @@ def index():
 def groups():
     return render_template('groups.html', time=datetime.now())
 
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
 @app.route("/post-signup", methods=["POST"])
 def post_signup():
     # Save the user's information to the database
-    name = request.form["name"]
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
     email = request.form["email"]
     grad_year = request.form["grad_year"]
     college = request.form["college"]

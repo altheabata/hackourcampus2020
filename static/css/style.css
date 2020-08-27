@@ -91,6 +91,15 @@ button{
     outline:none!important;
 }
 
+button a {
+    color: white;
+}
+
+button a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .gradient-button:hover{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin: 8px 10px 12px;
