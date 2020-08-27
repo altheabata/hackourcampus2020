@@ -19,7 +19,7 @@ body{
 
 .button-signup{
     width: 100px;
-    height: 30px;
+    height: 40px;
     position: relative;
     color: white;
     text-align: center;
@@ -37,12 +37,12 @@ body{
     cursor: pointer;
     display: inline-block;
     border-radius: 25px;
-    background-image: linear-gradient(to right, #7EA336 0%, #FBEC5D 51%, #7EA336 100%);
+    background-image: linear-gradient(to right, #7EA336 0%, #fe9a28 51%, #7EA336 100%);
 }
 
 .button-login{
     width: 100px;
-    height: 30px;
+    height: 40px;
     position: relative;
     color: white;
     text-align: center;
