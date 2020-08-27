@@ -1,4 +1,4 @@
-from flask import Flask, request, session, render_template
+from flask import Flask, request, session, render_template, redirect
 from flask_pymongo import PyMongo
 from passlib.hash import sha256_crypt
 import smtplib
@@ -12,22 +12,47 @@ app.config["MONGO_URI"] = "mongodb+srv://admin:Jcp0tnFjhYtNmQjy@cluster0.qzgsg.m
 mongo = PyMongo(app)
 app.secret_key = urandom(24)
 
+
+# Limit each page to either logged in or logged out users
+def require_logged_in(route):
+    def wrapper(**kwargs):
+        if "email" in session:
+            return route(**kwargs)
+        return redirect("/login")
+    wrapper.__name__ = route.__name__
+    return wrapper
+
+def require_logged_out(route):
+    def wrapper(**kwargs):
+        if "email" in session:
+            return redirect("/groups")
+        return route(**kwargs)
+    wrapper.__name__ = route.__name__
+    return wrapper
+    
+
+
 # homepage route
 @app.route('/')  
 @app.route('/index', methods = ["GET", "POST"])
+@require_logged_out
 def index():
+    print(session)
     return render_template('index.html', time=datetime.now())
 
 # study groups page route
 @app.route('/groups')
+@require_logged_in
 def groups():
     return render_template('groups.html', time=datetime.now())
 
 @app.route("/signup")
+@require_logged_out
 def signup():
     return render_template("signup.html")
 
 @app.route("/post-signup", methods=["POST"])
+@require_logged_out
 def post_signup():
     # Save the user's information to the database
     first_name = request.form["first_name"]
@@ -43,7 +68,7 @@ def post_signup():
         return "email already taken"
     hashed_password = sha256_crypt.hash(password)
     verification_code = urandom(24).hex()
-    while users.find_one({"verification_code": verification_code}):
+    while users.find_one({"verification_code": verification_code}): # Make sure the verification code is unique
         verification_code = urandom(24).hex()
     users.insert_one({"first_name": first_name, "last_name": last_name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password, "verification_code": verification_code})
     # Send the verification email
@@ -56,21 +81,25 @@ def post_signup():
     return "signup successful, verification email sent"
 
 @app.route("/verify/<verification_code>")
+@require_logged_out
 def verify(verification_code):
     users = mongo.db.users
     user = users.find_one({"verification_code": verification_code})
     if not user:
         return "verification code invalid"
     users.update_one({"verification_code": verification_code}, {"$unset": {"verification_code": ""}})
-    return "verification successful"
+    session["email"] = user["email"]
+    print("successfully verified " + user["email"])
+    return redirect("/groups")
 
 @app.route("/login")
+@require_logged_out
 def login():
     return render_template("login.html")
 
 @app.route("/post-login", methods=["POST"])
+@require_logged_out
 def post_login():
-    print(request.form)
     email = request.form["email"]
     password = request.form["password"]
     users = mongo.db.users
@@ -78,11 +107,16 @@ def post_login():
     if not user:
         return "credentials do not match records"
     if sha256_crypt.verify(password, user["hashed_password"]):
-        return "login successful"
+        if "verification_code" in user:
+            return "You recieved a verification email when you first signed up. Please find it in your inbox (or spam folder) and follow the link it contains."
+        session["email"] = email
+        print(email + " logged in successfully")
+        return redirect("/groups")
     else:
         return "credentials do not match records"
 
 @app.route("/subjects")
+@require_logged_in
 def subject_list():
     response = requests.get("https://classes.cornell.edu/api/2.0/config/subjects.json?roster=FA20")
     if not response:
@@ -95,6 +129,7 @@ def subject_list():
 #    return "<br>".join(subject_names)
 
 @app.route("/courses/<subject>")
+@require_logged_in
 def course_list(subject):
     response = requests.get("https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA20&subject=" + subject)
     if not response:
@@ -107,6 +142,7 @@ def course_list(subject):
 #    return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
 
 @app.route("/add-course/<subject>/<number>")
+@require_logged_in
 def add_course(subject, number):
     response = requests.get("https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA20&subject=" + subject)
     if not response:
