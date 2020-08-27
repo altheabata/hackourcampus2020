@@ -10,7 +10,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://admin:Jcp0tnFjhYtNmQjy@cluster0.qzgsg.mongodb.net/database?retryWrites=true&w=majority"
 mongo = PyMongo(app)
-app.secret_key = urandom(24)
+app.secret_key = "d8e5f254ff33cc5c53107093e945c90a27ef999085d0496b"
 
 
 # Limit each page to either logged in or logged out users
