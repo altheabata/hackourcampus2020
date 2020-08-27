@@ -1,6 +1,5 @@
 from flask import Flask, request, session, render_template, redirect
 from flask_pymongo import PyMongo
-import smtplib
 from os import urandom
 import requests
 import model
@@ -54,31 +53,17 @@ def signup():
 @app.route("/post-signup", methods=["POST"])
 @require_logged_out
 def post_signup():
-    # Save the user's information to the database
-    first_name = request.form["first_name"]
-    last_name = request.form["last_name"]
-    email = request.form["email"]
-    grad_year = request.form["grad_year"]
-    college = request.form["college"]
-    password = request.form["password"]
-    users = mongo.db.users
-    if email[-12:] != "@cornell.edu":
-        return "must use a cornell email"
-    if users.find_one({"email": email}):
-        return "email already taken"
-    hashed_password = sha256_crypt.hash(password)
-    verification_code = urandom(24).hex()
-    while users.find_one({"verification_code": verification_code}): # Make sure the verification code is unique
-        verification_code = urandom(24).hex()
-    users.insert_one({"first_name": first_name, "last_name": last_name, "email": email, "grad_year": grad_year, "college": college, "hashed_password": hashed_password, "verification_code": verification_code})
-    # Send the verification email
-    server = smtplib.SMTP_SSL("smtp.gmail.com")
-    from_address = "cornfieldapp@gmail.com"
-    server.login(from_address, "digjid-Dehge9-cambot")
-    text = "Subject: CornField email verification\n\nPlease follow this link to verify your email address: http://localhost:5000/verify/" + verification_code
-    server.sendmail(from_address, email, text)
-    server.quit()
-    return "signup successful, verification email sent"
+    result = model.attempt_signup(request.form, mongo)
+    if result["success"]:
+        return "Check your inbox (and spam folder) for a verification email."
+    else:
+        return result["error"]
+
+@app.route("/post-signup-ios", methods=["POST"])
+@require_logged_out
+def post_signup_ios():
+    result = model.attempt_signup(request.form, mongo)
+    return result
 
 @app.route("/verify/<verification_code>")
 @require_logged_out
@@ -100,9 +85,7 @@ def login():
 @app.route("/post-login", methods=["POST"])
 @require_logged_out
 def post_login():
-    email = request.form["email"]
-    password = request.form["password"]
-    result = model.attempt_login(email, password, mongo)
+    result = model.attempt_login(request.form, mongo)
     if result["success"]:
         session["email"] = email
         return redirect("/groups")
@@ -112,9 +95,7 @@ def post_login():
 @app.route("/post-login-ios", methods=["POST"])
 @require_logged_out
 def post_login_ios():
-    email = request.form["email"]
-    password = request.form["password"]
-    result = model.attempt_login(email, password, mongo)
+    result = model.attempt_login(request.form, mongo)
     return result
 
 @app.route("/subjects")
