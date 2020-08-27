@@ -1,14 +1,27 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, render_template
 from flask_pymongo import PyMongo
 from passlib.hash import sha256_crypt
 import smtplib
 from os import urandom
 import requests
+# to allow for simultaneous update in cloudshell
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://admin:Jcp0tnFjhYtNmQjy@cluster0.qzgsg.mongodb.net/database?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 app.secret_key = urandom(24)
+
+# homepage route
+@app.route('/')  
+@app.route('/index', methods = ["GET", "POST"])
+def index():
+    return render_template('index.html', time=datetime.now())
+
+# study groups page route
+@app.route('/groups')
+def groups():
+    return render_template('groups.html', time=datetime.now())
 
 @app.route("/post-signup", methods=["POST"])
 def post_signup():
