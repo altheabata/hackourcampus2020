@@ -77,7 +77,8 @@ def subject_list():
         return "API call failed"
     subjects = response.json()["data"]["subjects"]
     subject_names = [subject["descr"] for subject in subjects]
-    return "<br>".join(subject_names)
+    return render_template("subjects.html", subjects=subject_names)
+#    return "<br>".join(subject_names)
 
 @app.route("/course-list/<subject>")
 def course_list(subject):
