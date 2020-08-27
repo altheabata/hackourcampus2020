@@ -11,10 +11,16 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://admin:Jcp0tnFjhYtNmQjy@cluster0.qzgsg.mongodb.net/database?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
+# homepage route
 @app.route('/')  
 @app.route('/index', methods = ["GET", "POST"])
 def index():
     return render_template('index.html', time=datetime.now())
+
+# study groups page route
+@app.route('/groups')
+def groups():
+    return render_template('groups.html', time=datetime.now())
 
 @app.route("/post-signup", methods=["POST"])
 def post_signup():
