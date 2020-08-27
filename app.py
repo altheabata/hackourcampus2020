@@ -64,12 +64,19 @@ def verify(verification_code):
     users.update_one({"verification_code": verification_code}, {"$unset": {"verification_code": ""}})
     return "verification successful"
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
 @app.route("/post-login", methods=["POST"])
 def post_login():
+    print(request.form)
     email = request.form["email"]
     password = request.form["password"]
     users = mongo.db.users
     user = users.find_one({"email": email})
+    if not user:
+        return "credentials do not match records"
     if sha256_crypt.verify(password, user["hashed_password"]):
         return "login successful"
     else:
