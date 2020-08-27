@@ -23,6 +23,13 @@ body{
 
 /* nav bar */
 
+/* .navbar-default .navbar-nav > li:hover > a, 
+.navbar-default .navbar-nav > li:hover > a:hover,
+.navbar-default .navbar-nav > li:hover > a:focus {
+    background-color: white!important;
+    color: black!important;
+} */
+
 #navbar-custom { 
     background-color: #f6d6d6!important; 
 }
@@ -31,12 +38,16 @@ body{
     font-size: 20px;
 }
 
-.navbar-brand {
-    font-weight: 300;
+.navbar-brand{
+    font-weight: 800!important;
+    margin-left: 10px!important;
+    margin-right: 10px!important;
 }
 
 .homelink{
-    text-align: center;
+    text-align: center!important;
+    margin-left: 10px!important;
+    margin-right: 10px!important;
 }
 
 .button-signup{
