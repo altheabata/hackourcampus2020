@@ -1,42 +1,5 @@
-<html>
-    <head>
-        <title>Cornfield</title>
-        <!-- link css file -->
-        <link rel="stylesheet" href="../static/css/style.css?q={{time}}">
-        <!-- bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- responsiveness -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-         <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <!-- nav bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Cornfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+{% extends "base.html" %}
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link homelink" href="/groups">Home<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <button class="gradient-button button-signup">Sign Up</button>
-                </li>
-                <li class="nav-item">
-                    <button class="gradient-button button-login">Login</button>
-                </li>
-            </ul>
-        </div>
-        
-        </nav>
-    </body>
-</html>
+{% block content %}
+    <h1>Welcome to CornField</h1>
+{% endblock %}
