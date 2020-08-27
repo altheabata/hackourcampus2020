@@ -2,12 +2,23 @@
 
 {% block content %}
     <h1>Courses in {{ subject }}</h1>
-    {% for course in courses %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ subject }} {{ course.number }}</h5>
-                <h6 class="card-subtitle">{{ course.name }}</h6>
+    <div class="row">
+        {% for col in courses | batch(3) %}
+            <div class="col-4">
+                {% for course in col %}
+                    <div class="card">
+                        <a href="/course/{{ subject }}/{{ course.number }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ subject }} {{ course.number }}</h5>
+                                <h6 class="card-subtitle">{{ course.name }}</h6>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}
+
+
+

@@ -12,6 +12,12 @@ mongo = PyMongo(app)
 app.secret_key = "d8e5f254ff33cc5c53107093e945c90a27ef999085d0496b"
 
 
+# Pass the time into every route automatically (to sync CSS)
+@app.context_processor
+def inject_datetime():
+    return dict(time=datetime.now())
+
+
 # Limit each page to either logged in or logged out users
 def require_logged_in(route):
     def wrapper(**kwargs):
@@ -37,13 +43,13 @@ def require_logged_out(route):
 @require_logged_out
 def index():
     print(session)
-    return render_template('index.html', time=datetime.now())
+    return render_template('index.html')
 
 # study groups page route
 @app.route('/groups')
 @require_logged_in
 def groups():
-    return render_template('groups.html', time=datetime.now())
+    return render_template('groups.html')
 
 @app.route("/signup")
 @require_logged_out
