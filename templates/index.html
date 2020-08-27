@@ -1,5 +1,71 @@
-{% extends "base.html" %}
+<html>
+    <head>
+        <title>Cornfield</title>
+        <!-- link css file -->
+        <link rel="stylesheet" href="../static/css/style.css?q={{time}}">
+        <!-- bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+         <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- background -->
+        <!-- <div style="background-image: url('../static/images/learning_icons.jpg');" class="homebg"></div> -->
 
-{% block content %}
-    <h1>Welcome to CornField</h1>
-{% endblock %}
+        <!-- nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-custom">
+            <a class="navbar-brand" href="/index">Cornfield</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link homelink" href="/index">Home<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="gradient-button button-signup">Sign Up</button>
+                </li>
+                <li class="nav-item">
+                    <button class="gradient-button button-login">Login</button>
+                </li>
+            </ul>
+        </div>
+
+        </nav>
+
+        <!-- landing page text -->
+        <div class="landing-text">
+            <div class="row">
+                <div class="col d-flex justify-content-center text-center">
+                    <img src="../static/images/people_education.jpg" alt="people with books" class="homeimage">
+                </div>
+                <div class="col homecol">
+                    <p style="font-size:35px; color:black; font-weight:bold;" class="hometext">
+                        <span style="color: #B53737">Pick</span>
+                        your study group from the field.
+                    </p>
+                    <p style="font-size:35px; color:black; font-weight:bold;" class="hometext">
+                        Stay <span style="color: #B53737">connected</span> and
+                        <span style="color: #B53737">ace</span> your
+                        <span style="color: #B53737">exams</span> with
+                        <span style="color: #7EA336">CornField</span>, the new
+                        land for studying together.
+                    </p>
+                    <p style="font-size:35px; color:black; font-weight:bold;" class="hometext">
+                        Get to know each other and find <span style="color: #B53737">likeminded</span> people.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
