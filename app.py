@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from flask_pymongo import PyMongo
 from passlib.hash import sha256_crypt
 import smtplib
@@ -8,6 +8,7 @@ import requests
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://admin:Jcp0tnFjhYtNmQjy@cluster0.qzgsg.mongodb.net/database?retryWrites=true&w=majority"
 mongo = PyMongo(app)
+app.secret_key = urandom(24)
 
 @app.route("/post-signup", methods=["POST"])
 def post_signup():
@@ -74,3 +75,15 @@ def course_list(subject):
     numbers = [course["catalogNbr"] for course in courses]
     titles = [course["titleLong"] for course in courses]
     return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
+
+@app.route("/add-course/<subject>/<number>")
+def add_course(subject, number):
+    response = requests.get("https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA20&subject=" + subject)
+    if not response:
+        return "API call failed"
+    course_numbers = response.json()["data"]["classes"]["catalogNbr"]
+    if number not in course_numbers:
+        return "course number invalid"
+    users = mongo.db.users
+    return "work in progress"
+#    user =
