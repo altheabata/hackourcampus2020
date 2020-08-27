@@ -1,9 +1,9 @@
 from flask import Flask, request, session, render_template, redirect
 from flask_pymongo import PyMongo
-from passlib.hash import sha256_crypt
 import smtplib
 from os import urandom
 import requests
+import model
 # to allow for simultaneous update in cloudshell
 from datetime import datetime
 
@@ -102,18 +102,20 @@ def login():
 def post_login():
     email = request.form["email"]
     password = request.form["password"]
-    users = mongo.db.users
-    user = users.find_one({"email": email})
-    if not user:
-        return "credentials do not match records"
-    if sha256_crypt.verify(password, user["hashed_password"]):
-        if "verification_code" in user:
-            return "You recieved a verification email when you first signed up. Please find it in your inbox (or spam folder) and follow the link it contains."
+    result = model.attempt_login(email, password, mongo)
+    if result["success"]:
         session["email"] = email
-        print(email + " logged in successfully")
         return redirect("/groups")
     else:
-        return "credentials do not match records"
+        return result["error"]
+
+@app.route("/post-login-ios", methods=["POST"])
+@require_logged_out
+def post_login_ios():
+    email = request.form["email"]
+    password = request.form["password"]
+    result = model.attempt_login(email, password, mongo)
+    return result
 
 @app.route("/subjects")
 @require_logged_in
