@@ -93,7 +93,7 @@ def login():
 def post_login():
     result = model.attempt_login(request.form, mongo)
     if result["success"]:
-        session["email"] = email
+        session["email"] = request.form["email"]
         return redirect("/groups")
     else:
         return result["error"]
