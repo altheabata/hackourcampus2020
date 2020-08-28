@@ -37,13 +37,18 @@ def require_logged_out(route):
     
 
 
-# homepage route
+# homepage route LOGGED OUT
 @app.route('/')  
 @app.route('/index', methods = ["GET", "POST"])
 @require_logged_out
 def index():
     print(session)
     return render_template('index.html')
+
+# homepage route LOGGED IN
+@app.route('/homepage')
+def homepage():
+    return render_template('logged-in-homepage.html')
 
 # study groups page route
 @app.route('/groups')

@@ -1,16 +1,21 @@
 *{
     outline: none;
+    font-family: 'Inter', sans-serif;
 }
 
 body{
     overflow-x: hidden !important;
     max-width: 100%;
-    font-family: 'Inter', sans-serif;
 }
 
 /* INDEX AKA HOME PAGE */
 
 /* nav bar */
+
+/* profile pic */
+.profpic{
+    margin-right: 2%;
+}
 
 /* logged in base */
 #navbar-custom { 
@@ -135,7 +140,7 @@ button a:hover {
 
 /* home text and image in two columns */
 .homecol{
-    padding: 20px;
+    padding: 10px;
 }
 .hometext{
     padding: 35px;
@@ -144,13 +149,19 @@ button a:hover {
 .homeimage{
     display: flex;
     text-align: center;
+    vertical-align: center;
     justify-content: center;
     align-content: center;
     max-width: 100%;
-    max-height: 100%;
-    height: 80%!important;
-    width: 80%!important;
-    margin: 10%;
+    height: 600px;
+    width: 600px;
+    /* height: 80%!important; */
+    /* width: 80%!important; */
+    /* margin: 10%; */
+    overflow: hidden;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    
 }
 
 /* SIGN UP & LOGIN PAGES */
@@ -174,4 +185,75 @@ button a:hover {
     text-decoration: none;
     color: black;
     box-shadow: 4px 4px 20px #00000033;
+}
+
+/* STUDY TIPS STYLING */
+
+.study-section{
+    margin: 20px;
+}
+
+.study-headings{
+    text-align: center;
+}
+
+.button-tip-rng{
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #fe9a28 0%, #f9ae0b 51%, #fe9a28 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.tip-generator{
+    text-align: center;
+}
+
+/* guides */
+
+.button-guides{
+    height: 300;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    margin-right: 20px!important;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #58ffce 0%, #64caac 51%, #58ffce 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.study-guides{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
 }
