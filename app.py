@@ -56,10 +56,23 @@ def groups():
     organizers = [users.find_one({"email": group["organizer"]}) for group in joined_groups]
     return render_template('groups.html', groups=joined_groups, organizers=organizers)
 
+# sign up route
 @app.route("/signup")
 @require_logged_out
 def signup():
     return render_template("signup.html")
+
+# study tips route
+@app.route("/studytips")
+@require_logged_in
+def studytips():
+    return render_template("studytips.html")
+
+# study tips route
+@app.route("/profile")
+@require_logged_in
+def profile():
+    return render_template("profile.html")
 
 @app.route("/post-signup", methods=["POST"])
 @require_logged_out
@@ -88,6 +101,7 @@ def verify(verification_code):
     print("successfully verified " + user["email"])
     return redirect("/groups")
 
+# login route
 @app.route("/login")
 @require_logged_out
 def login():
@@ -109,6 +123,7 @@ def post_login_ios():
     result = model.attempt_login(request.form, mongo)
     return result
 
+# logout route
 @app.route('/logout')
 def logout():
     session.clear()
