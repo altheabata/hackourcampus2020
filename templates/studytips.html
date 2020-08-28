@@ -2,37 +2,49 @@
 
 {% block content %}
 
+<div class="studytips-section">
     <div class="study-section">
         <h1 class="study-headings">Ace Your Exams</h1>
     </div>
 
     <div class="study-section">
-        <div class="tip-generator">
-            <button class="gradient-button button-tip-rng">Give me a study tip</button>
+        <div class="tips" id="tipDisplay">
         </div>
-    <div class="study-section">
-    
+        <div class="tip-generator">
+            <button onclick="newTip()" class="gradient-button button-tip-rng">Give me a study tip</button>
+        </div>
+    </div>
+</div>
+
+<div class="studytips-section">
     <div class="study-section">
         <h1 class="study-headings">Study Guides</h1>
-        <div class="study-guides">
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-        </div>
-        <div class="study-guides">
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-        </div>
-        <div class="study-guides">
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-        </div>
-        <div class="study-guides">
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-            <button class="gradient-button button-guides">CLASS XXXX</button>
-        </div>
+    </div>
+
     <div class="study-section">
+        <div class="study-guides">
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+        </div>
+        <div class="study-guides">
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+        </div>
+        <div class="study-guides">
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+        </div>
+        <div class="study-guides">
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+            <button class="gradient-button button-guides">CLASS XXXX</button>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/studyRNG.js?q={{time}}"></script>
+
 {% endblock %}
