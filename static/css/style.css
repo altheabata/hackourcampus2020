@@ -189,8 +189,22 @@ button a:hover {
 
 /* STUDY TIPS STYLING */
 
+/* div around all parts */
+.studytips-section{
+    margin-top: 30px;
+}
+
+/* div for parts */
 .study-section{
-    margin: 20px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* div for displaying study tips */
+.tips{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
 }
 
 .study-headings{
