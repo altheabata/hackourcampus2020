@@ -38,7 +38,7 @@ def attempt_signup(form, mongo):
     server = smtplib.SMTP_SSL("smtp.gmail.com")
     from_address = "cornfieldapp@gmail.com"
     server.login(from_address, "digjid-Dehge9-cambot")
-    text = "Subject: CornField email verification\n\nPlease follow this link to verify your email address: http://localhost:5000/verify/" + verification_code
+    text = "Subject: CornField email verification\n\nPlease follow this link to verify your email address: https://cornfield.herokuapp.com/verify/" + verification_code
     server.sendmail(from_address, email, text)
     server.quit()
     return {"success": True}
