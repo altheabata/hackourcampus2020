@@ -104,6 +104,11 @@ def post_login_ios():
     result = model.attempt_login(request.form, mongo)
     return result
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return render_template('index.html', time=datetime.now())
+
 @app.route("/subjects")
 @require_logged_in
 def subject_list():

@@ -2,55 +2,61 @@
 
 {% block content %}
 
-    <!-- sign-up two columns -->
-    <div class="twocolumns">
+    <div class="container py-5">
         <div class="row">
-            <div class="col formcolumn">
+            <div class="col-md-10 mx-auto">
                 <form action="/post-signup" method="post">
-                    <div class="formgroup">
-                        <label class="formlabel" for="first_name">First name:</label>
-                        <input name="first_name">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="first_name">First Name</label>
+                            <input name="first_name" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="last_name">Last Name</label>
+                            <input name="last_name" class="form-control">
+                        </div>
                     </div>
-                    <div class="formgroup">
-                        <label class="formlabel" for="last_name">Last name:</label>
-                        <input name="last_name">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="email">Email</label>
+                            <input name="email" class="form-control" type="email">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="password">Password</label>
+                            <input name="password" class="form-control" type="password">
+                        </div>
                     </div>
-                    <div class="formgroup">
-                        <label class="formlabel" for="email">Email:</label>
-                        <input name="email" type="email">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="grad_year">Graduation Year</label>
+                            <select name="grad_year" class="form-control">
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="college">College:</label>
+                            <select name="college" class="form-control">
+                                <option value="cals">Agriculture and Life Sciences</option>
+                                <option value="aap">Architecture, Art and Planning</option>
+                                <option value="cas">Arts and Sciences</option>
+                                <option value="hotel">Hotel Administration</option>
+                                <option value="dyson">Dyson</option>
+                                <option value="coe">Engineering</option>
+                                <option value="humec">Human Ecology</option>
+                                <option value="ilr">Industrial and Labor Relations</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="formgroup">
-                        <label class="formlabel" for="password">Password:</label>
-                        <input name="password" type="password">
-                    </div>
-                    <div class="formgroup">
-                        <label class="formlabel" for="grad_year">Graduation year:</label>
-                        <select name="grad_year">
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                    </div>
-                    <div class="formgroup">
-                        <label class="formlabel" for="college">College:</label>
-                        <select name="college">
-                            <option value="cals">Agriculture and Life Sciences</option>
-                            <option value="aap">Architecture, Art and Planning</option>
-                            <option value="cas">Arts and Sciences</option>
-                            <option value="hotel">Hotel Administration</option>
-                            <option value="dyson">Dyson</option>
-                            <option value="coe">Engineering</option>
-                            <option value="humec">Human Ecology</option>
-                            <option value="ilr">Industrial and Labor Relations</option>
-                        </select>
-                        <input type="submit" value="Submit">
+                    <div class="form-group row">
+                        <div class="col-auto">
+                            <input type="submit" value="Submit">
+                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="col">
-                <img src="../static/images/people_education.jpg" alt="people with books" class="homeimage">
             </div>
         </div>
     </div>
