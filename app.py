@@ -2,6 +2,7 @@ from flask import Flask, request, session, render_template, redirect
 from flask_pymongo import PyMongo
 from os import urandom
 import requests
+from bson import ObjectId
 import model
 # to allow for simultaneous update in cloudshell
 from datetime import datetime
@@ -49,7 +50,11 @@ def index():
 @app.route('/groups')
 @require_logged_in
 def groups():
-    return render_template('groups.html')
+    groups = mongo.db.groups
+    joined_groups = list(groups.find({"members": session["email"]}))
+    users = mongo.db.users
+    organizers = [users.find_one({"email": group["organizer"]}) for group in joined_groups]
+    return render_template('groups.html', groups=joined_groups, organizers=organizers)
 
 @app.route("/signup")
 @require_logged_out
@@ -120,7 +125,6 @@ def subject_list():
     subject_abbrievs = [subject["value"] for subject in subjects]
     subjects = [{"name": subject_names[i], "abbrieviation": subject_abbrievs[i]} for i in range(len(subjects))]
     return render_template("subjects.html", subjects=subjects)
-#    return "<br>".join(subject_names)
 
 @app.route("/courses/<subject>")
 @require_logged_in
@@ -133,17 +137,51 @@ def course_list(subject):
     names = [course["titleLong"] for course in courses]
     courses = [{"number": numbers[i], "name": names[i]} for i in range(len(courses))]
     return render_template("courses.html", courses=courses, subject=subject)
-#    return "<br>".join([subject + " " + numbers[i] + ": " + titles[i] for i in range(len(courses))])
 
-@app.route("/add-course/<subject>/<number>")
+@app.route("/course/<subject>/<course_number>/")
 @require_logged_in
-def add_course(subject, number):
+def course(subject, course_number):
+    # Get the course title from the API
     response = requests.get("https://classes.cornell.edu/api/2.0/search/classes.json?roster=FA20&subject=" + subject)
-    if not response:
-        return "API call failed"
-    course_numbers = response.json()["data"]["classes"]["catalogNbr"]
-    if number not in course_numbers:
-        return "course number invalid"
+    if response:
+        courses = response.json()["data"]["classes"]
+        for course in courses:
+            if course["catalogNbr"] == course_number:
+                course_title = course["titleLong"]
+                break
+    # Find groups for the given course
+    groups = mongo.db.groups
+    relevent_groups = list(groups.find({"subject": subject, "course_number": course_number}))
     users = mongo.db.users
-    return "work in progress"
-#    user =
+    organizers = [users.find_one({"email": group["organizer"]}) for group in relevent_groups]
+    if course_title:
+        return render_template("course.html", subject=subject, number=course_number, course_title=course_title, groups=relevent_groups, organizers=organizers)
+    else:
+        return render_template("course.html", subject=subject, number=course_number, groups=relevent_groups, organizers=organizers)
+
+@app.route("/start-group/<subject>/<course_number>")
+@require_logged_in
+def start_group(subject, course_number):
+    return render_template("start-group.html", subject=subject, number=course_number)
+
+@app.route("/post-start-group/<subject>/<course_number>", methods=["POST"])
+@require_logged_in
+def post_start_group(subject, course_number):
+    groups = mongo.db.groups
+    member_cap = int(request.form["member_cap"])
+    groups.insert_one({"subject": subject, "course_number": course_number, "member_cap": member_cap, "members": [session["email"]], "organizer": session["email"]})
+    return redirect("/groups")
+
+@app.route("/join-group/<group_id>")
+@require_logged_in
+def join_group(group_id):
+    groups = mongo.db.groups
+    group = groups.find_one({"_id": ObjectId(group_id)})
+    if not group:
+        return redirect("/subjects")
+    if len(group["members"]) >= group["member_cap"]:
+        return "this group is full"
+    if session["email"] in group["members"]:
+        return "you're already a member of this group"
+    groups.update_one({"_id": group["_id"]}, {"$push": {"members": session["email"]}})
+    return redirect("/groups")

@@ -1,0 +1,11 @@
+{% extends "base-logged-in.html" %}
+
+
+{% block content %}
+    <h1>Start a study group for {{ subject }} {{ number }}</h1>
+    <form action="/post-start-group/{{ subject }}/{{ number }}" method="post">
+        <label for="member_cap">Maximum number of members:</label>
+        <input name="member_cap">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
