@@ -137,6 +137,32 @@ button a:hover {
     margin: 10%;
 }
 
+/* SIGN UP & LOGIN PAGES */
+
+.twocolumns{
+    margin: 50px;
+    padding: 50px;
+    border: black;
+}
+
+.formcolumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.formlabel{
+    float: left;
+    width: 150px;
+}
+
+.formgroup input{
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* SUBJECTS AND CLASSES STYLING */
+
 .card {
     margin-top: 30px;
 }
