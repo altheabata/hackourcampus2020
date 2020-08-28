@@ -115,6 +115,11 @@ def post_login():
     else:
         return "credentials do not match records"
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return render_template('index.html', time=datetime.now())
+
 @app.route("/subjects")
 @require_logged_in
 def subject_list():

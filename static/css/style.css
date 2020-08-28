@@ -10,32 +10,22 @@ body{
 
 /* INDEX AKA HOME PAGE */
 
-/* background NOT WORKING atm */
-/* .homebg{
-    margin: 0;
-    padding: 0;
-    background: url('images/yourimage.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-} */
-
 /* nav bar */
 
-/* .navbar-default .navbar-nav > li:hover > a, 
-.navbar-default .navbar-nav > li:hover > a:hover,
-.navbar-default .navbar-nav > li:hover > a:focus {
-    background-color: white!important;
-    color: black!important;
-} */
-
+/* logged in base */
 #navbar-custom { 
     background-color: #f6d6d6!important; 
 }
 
+/* logged out base */
+#navbar-custom2 { 
+    background-color: #f6d6d6!important; 
+}
+
+
 .nav-item{
     font-size: 20px;
+    display: inline-flex;
 }
 
 .navbar-brand{
@@ -74,7 +64,29 @@ body{
 }
 
 .button-login{
-    width: 100px;
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #B53737 0%, #BFA6A2 51%, #B53737 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.button-logout{
     height: 40px;
     position: relative;
     color: white;
@@ -139,26 +151,8 @@ button a:hover {
 
 /* SIGN UP & LOGIN PAGES */
 
-.twocolumns{
-    margin: 50px;
-    padding: 50px;
-    border: black;
-}
-
-.formcolumn{
-    display: flex;
-    flex-direction: column;
-}
-
-.formlabel{
-    float: left;
-    width: 150px;
-}
-
-.formgroup input{
-    width: 150px;
-    padding: 10px;
-    margin: 10px;
+.container py-5{
+    border: 5px black!important;
 }
 
 /* SUBJECTS AND CLASSES STYLING */
