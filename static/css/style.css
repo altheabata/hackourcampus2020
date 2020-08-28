@@ -25,13 +25,17 @@ body{
 
 .nav-item{
     font-size: 20px;
-    display: inline-flex;
+    display: inline-block;
 }
 
 .navbar-brand{
     font-weight: 800!important;
     margin-left: 10px!important;
     margin-right: 10px!important;
+}
+
+.navbar-nav{
+    white-space: nowrap;
 }
 
 .homelink{
