@@ -3,13 +3,13 @@
 {% block content %}
     <h1 class="general-heading">Groups</h1>
     {% for i in range(groups|length) %}
-        <a href="/group/{{ groups[i]._id }}">
-            <div class="card">
+        <div class="card">
+            <a href="/group/{{ groups[i]._id }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ organizers[i].first_name }}'s study group for {{ groups[i].subject }} {{ groups[i].course_number }}</h5>
                     <h6>{{ groups[i]["member_cap"] - groups[i].members|length }} out of {{ groups[i].member_cap }} seats are open</h6>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     {% endfor %}
 {% endblock %}

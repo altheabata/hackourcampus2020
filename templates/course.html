@@ -1,9 +1,452 @@
 {% extends "base-logged-in.html" %}
 
+{% block style %}
+<style>
+*{
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+/* PAGE HEADINGS */
+.general-heading{
+    text-align: center;
+    margin: 40px;
+}
+
+.small-bottom-margin {
+    margin-bottom: 20px;
+}
+    
+.small-top-margin {
+    margin-top: 20px;
+}
+
+/* INDEX AKA HOME PAGE */
+
+/* nav bar */
+
+/* profile pic */
+.profpic{
+    margin-right: 2%;
+}
+
+/* logged in base */
+#navbar-custom { 
+    background-color: #fac85c!important; 
+}
+
+/* logged out base */
+#navbar-custom2 { 
+    background-color: #fac85c!important; 
+}
+
+
+.nav-item{
+    font-size: 20px;
+    display: inline-block;
+}
+
+.navbar-brand{
+    font-weight: 800!important;
+    margin-left: 10px!important;
+    margin-right: 10px!important;
+}
+
+.navbar-nav{
+    white-space: nowrap;
+}
+
+.homelink{
+    text-align: center!important;
+    margin-left: 10px!important;
+    margin-right: 10px!important;
+}
+
+.button-signup{
+    width: 100px;
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #7EA336 0%, #64caac 51%, #7EA336 100%);
+}
+
+.button-login{
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #B53737 0%, #BFA6A2 51%, #B53737 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.button-logout{
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #B53737 0%, #BFA6A2 51%, #B53737 100%);
+}
+
+button{
+    border-color:transparent!important;
+    outline:none!important;
+}
+
+button a {
+    color: white;
+}
+
+button a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.gradient-button:hover{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+    background-position: right center;
+}
+    
+.btn-primary {
+    background-color: #fac85c;
+    border: none;
+    transition: background-color 0.2s !important;
+}
+
+.btn-primary:hover {
+    background-color: #e9b74b;
+    box-shadow: none !important;
+}
+
+/* home text and image in two columns */
+
+.index-area{
+    margin: 0 auto!important;
+}
+.landing-text{
+    margin: 0 auto!important;
+}
+
+.homecol{
+    /* margin-right: 30px;
+    margin-left: 30px; */
+}
+.hometext{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 35px;
+}
+
+.homeimage{
+    max-width: 100%;
+    height: auto;
+    width: 500px;
+    overflow: hidden;
+    margin: auto;
+    
+}
+
+/* SIGN UP & LOGIN PAGES */
+
+.container-signup{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    width: 60%;
+    border: none;
+    -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    background-image: white;
+}
+
+.container-login{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    width: 60%;
+    /* height: 50%; */
+    border: none;
+    -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    background-image: white;
+}
+
+.loginform-text{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+/* SUBJECTS AND CLASSES STYLING */
+
+.card {
+    margin-top: 30px;
+}
+
+.card a {
+    color: black;
+    transition: box-shadow 0.5s;
+}
+
+.card a:hover {
+    text-decoration: none;
+    color: black;
+    box-shadow: 4px 4px 20px #00000033;
+}
+
+/* STUDY TIPS STYLING */
+
+/* div around all parts */
+.studytips-section{
+    margin-top: 30px;
+}
+
+/* div for parts */
+.study-section{
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* div for displaying study tips */
+.tips{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.study-headings{
+    text-align: center;
+}
+
+.button-tip-rng{
+    height: 40px;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #fe9a28 0%, #f9ae0b 51%, #fe9a28 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.tip-generator{
+    text-align: center;
+}
+
+/* guides */
+
+.button-guides{
+    height: 300;
+    position: relative;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    margin-right: 20px!important;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #58ffce 0%, #64caac 51%, #58ffce 100%);
+    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
+}
+
+.study-guides{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/* PROFILE CARDS */
+.prof-name{
+    font-size: 30px;
+	margin: 10px;
+}
+
+.prof-college{
+	font-size: 16px;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+.prof-commons{
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.round{
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.round img{
+    border-radius: 50%;
+    display: block;
+}
+
+.prof-container{
+    position: relative;
+	width: 350px;
+	max-width: 100%;
+	text-align: center;
+	padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f9ae0b;
+	color: white;
+    transform: translatez(70px) scale(0.8);
+	line-height: 1.5em;
+    -webkit-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.prof-button{
+	background-color: #B53737;
+	border-radius: 40px;
+	color: white;
+	padding: 10px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.prof-row{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.prof-container:hover{
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.front {
+	z-index: 2;
+}
+
+.back{
+    transform: rotateY(180deg);
+    z-index: 0;
+    margin: 0 auto;
+}
+
+.side {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	margin: 0 auto;
+    padding: auto;
+}
+
+.content {
+    position: relative;
+}
+/* content:before {
+	content: "";
+	position: absolute;
+	bottom: -20px;
+	height: 3px;
+	background-color: #3e3;
+	width: 70px;
+	left: 50%;
+	transform: translateX(-50%);
+} */
+</style>
+{% endblock %}
+
 {% block content %}
-    <h1 class="general-heading">{{ subject }} {{ number }}</h1>
+    <h1 class="general-heading small-bottom-margin">{{ subject }} {{ number }}</h1>
     {% if course_title %}
-        <h2>{{ course_title }}</h2>
+        <h2 class="general-heading text-muted small-top-margin">{{ course_title }}</h2>
     {% endif %}
     {% for i in range(groups|length) %}
         <div class="card">
@@ -14,5 +457,5 @@
             </div>
         </div>
     {% endfor %}
-    <a class="btn btn-secondary" href="/start-group/{{ subject }}/{{ number }}">Start a new group</a>
+    <a class="btn btn-secondary small-top-margin" href="/start-group/{{ subject }}/{{ number }}">Start a new group</a>
 {% endblock %}
