@@ -568,7 +568,7 @@ a {
 	height: 100%;
 	backface-visibility: hidden;
 	margin: 0 auto;
-    padding: auto;
+    padding: 30px;
 }
 
 .content {
