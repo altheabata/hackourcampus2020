@@ -73,7 +73,13 @@ def signup():
 def studytips():
     return render_template("studytips.html")
 
-# study tips route
+# connect route
+@app.route("/connect")
+@require_logged_in
+def connect():
+    return render_template("connect.html")
+
+# profile route
 @app.route("/profile")
 @require_logged_in
 def profile():
