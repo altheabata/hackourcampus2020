@@ -22,7 +22,14 @@ No study group? Create one on Cornfield.
 - All subjects and courses called from the Cornell Roster API
 - Join or create a study group
 - Profile page
-- Study tips page with random study tip generator made with JavaScript
+- Study tips page with random study tip generator made with JavaScript and study guides for users to share or use
+- Connect page to find study buddies with hover flip in CSS
+
+# Next Steps
+- Add user's study styles to create different arrays for random study tips based on style
+- Expand use of MongoDB database to recommend friends based on common classes or study groups
+- Creating a study group page did not receive the Jinja navbar extension properly
+- Add availability to Web (available in iOS) and take students’ free time (and timezones) into account to present study groups that fit their schedules
 
 # Developers
 Main Frontend: Althea Bata (Dyson '24)
