@@ -7,4 +7,5 @@ See it live on Heroku: http://cornfield.herokuapp.com/index
 
 # Developers
 Main Frontend: Althea Bata (Dyson '24)
+
 Main Backend: Aaron Fink (CAS '24)
