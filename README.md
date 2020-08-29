@@ -3,7 +3,8 @@ Project for a Cornell University Hackathon called HackOurCampus (8/26/20 - 8/29/
 
 Made with HTML, CSS, Python, Jinja, Flask, MongoDB, JavaScript, JSON, and the Cornell Roster API
 
-See it live on Heroku: http://cornfield.herokuapp.com/index (use email apb235@cornell.edu and password "password" without quotation marks)
+See it live on Heroku: http://cornfield.herokuapp.com/index 
+- (use email apb235@cornell.edu and password "password" without quotation marks)
 
 # Purpose and Inspiration
 COVID-19 has resulted in online learning for all. Even those with in-person classes, those are hybrid with a transition to online. When a Zoom video ends, you don't see anyone except yourself in the reflection. But you want to see people. Everyone wants to be connected. 
