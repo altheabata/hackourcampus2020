@@ -19,7 +19,7 @@ No study group? Create one on Cornfield.
 - Gated pages where navbar with full features are only available to logged in users
 - Signup that only allows for @cornell.edu emails and sends a verification email
 - Login that only allows in verified users
-- Animated CSS ("flying (rather, falling) corn")
+- Corn animation using CSS ("flying (rather, falling) corn")
 - All subjects and courses called from the Cornell Roster API
 - Join or create a study group
 - Profile page
