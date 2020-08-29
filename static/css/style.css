@@ -9,6 +9,12 @@ body{
     max-width: 100%;
 }
 
+/* PAGE HEADINGS */
+.general-heading{
+    text-align: center;
+    margin: 40px;
+}
+
 /* INDEX AKA HOME PAGE */
 
 /* nav bar */
@@ -20,12 +26,12 @@ body{
 
 /* logged in base */
 #navbar-custom { 
-    background-color: #f6d6d6!important; 
+    background-color: #fac85c!important; 
 }
 
 /* logged out base */
 #navbar-custom2 { 
-    background-color: #f6d6d6!important; 
+    background-color: #fac85c!important; 
 }
 
 
@@ -70,7 +76,7 @@ body{
     cursor: pointer;
     display: inline-block;
     border-radius: 25px;
-    background-image: linear-gradient(to right, #7EA336 0%, #fe9a28 51%, #7EA336 100%);
+    background-image: linear-gradient(to right, #7EA336 0%, #64caac 51%, #7EA336 100%);
 }
 
 .button-login{
@@ -308,3 +314,60 @@ button a:hover {
 }
 
 /* PROFILE CARDS */
+.prof-name{
+    font-size: 30px;
+	margin: 10px;
+}
+
+.prof-college{
+	font-size: 16px;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+.prof-commons{
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.round{
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.round img{
+    border-radius: 50%;
+    display: block;
+}
+
+.prof-container{
+    position: relative;
+	width: 350px;
+	max-width: 100%;
+	text-align: center;
+	padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #B53737;
+	color: white;
+}
+
+.prof-button{
+	background-color: #64caac;
+	border-radius: 40px;
+	color: white;
+	padding: 10px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.prof-row{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
