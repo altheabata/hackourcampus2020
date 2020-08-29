@@ -1,6 +1,7 @@
 *{
     outline: none;
     font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
 }
 
 body{
@@ -115,7 +116,6 @@ body{
     display: inline-block;
     border-radius: 25px;
     background-image: linear-gradient(to right, #B53737 0%, #BFA6A2 51%, #B53737 100%);
-    /* background: linear-gradient(90deg, #BFA6A2 0%, #B53737 104.29%); */
 }
 
 button{
@@ -139,35 +139,70 @@ button a:hover {
 }
 
 /* home text and image in two columns */
+
+.index-area{
+    margin: 0 auto!important;
+}
+.landing-text{
+    margin: 0 auto!important;
+}
+
 .homecol{
     padding: 10px;
 }
 .hometext{
+    margin-top: 5%;
+    margin-bottom: 5%;
     padding: 35px;
 }
 
 .homeimage{
-    display: flex;
-    text-align: center;
-    vertical-align: center;
-    justify-content: center;
-    align-content: center;
     max-width: 100%;
-    height: 600px;
-    width: 600px;
-    /* height: 80%!important; */
-    /* width: 80%!important; */
-    /* margin: 10%; */
+    height: 500px;
+    width: 500px;
     overflow: hidden;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin: auto;
     
 }
 
 /* SIGN UP & LOGIN PAGES */
 
-.container py-5{
-    border: 5px black!important;
+.container-signup{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    width: 60%;
+    border: none;
+    -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    background-image: white;
+}
+
+.container-login{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    width: 60%;
+    /* height: 50%; */
+    border: none;
+    -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.34);
+    background-image: white;
+}
+
+.loginform-text{
+    text-align: center;
+    margin-bottom: 5%;
 }
 
 /* SUBJECTS AND CLASSES STYLING */
@@ -271,3 +306,5 @@ button a:hover {
     justify-content: space-around;
     align-content: center;
 }
+
+/* PROFILE CARDS */
