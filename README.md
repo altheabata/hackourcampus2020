@@ -1,7 +1,7 @@
 # Cornfield
 Project for a Cornell University Hackathon called HackOurCampus (8/26/20 - 8/29/20)
 
-Made with HTML, CSS, Python, Jinja, Flask, MongoDB, JavaScript, JSON, and the Cornell Roster API
+*Made with HTML, CSS, Python, Jinja, Flask, MongoDB, JavaScript, JSON, and the Cornell Roster API*
 
 See it live on Heroku: http://cornfield.herokuapp.com/index 
 - (use email apb235@cornell.edu and password "password" without quotation marks to login if you don't have a @cornell.edu email)
@@ -19,7 +19,7 @@ No study group? Create one on Cornfield.
 - Gated pages where navbar with full features are only available to logged in users
 - Signup that only allows for @cornell.edu emails and sends a verification email
 - Login that only allows in verified users
-- Corn animation using CSS ("flying (rather, falling) corn")
+- Corn SVG animation using CSS ("flying (rather, falling) corn")
 - All subjects and courses called from the Cornell Roster API
 - Join or create a study group
 - Profile page
