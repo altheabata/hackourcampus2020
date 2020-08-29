@@ -15,7 +15,7 @@ Cornfield allows for easy creation of study groups in any Cornell class. You can
 No study group? Create one on Cornfield.
 
 # Features
-- Gated nav bar where full features are only available to logged in users
+- Gated pages where navbar with full features are only available to logged in users
 - Signup that only allows for @cornell.edu emails and sends a verification email
 - Login that only allows in verified users
 - Animated CSS ("flying (rather, falling) corn")
