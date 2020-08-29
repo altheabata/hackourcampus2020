@@ -348,21 +348,26 @@ button a:hover {
 
 }
 
-/* SUBJECTS AND CLASSES STYLING */
+/* COURSE SUBJECTS AND CLASSES STYLING */
 
 .card{
     margin-top: 30px;
 }
 
-.card a {
+.course-card a {
     color: black;
     transition: box-shadow 0.5s;
 }
 
-.card a:hover {
+.course-card a:hover {
     text-decoration: none;
     color: black;
     box-shadow: 4px 4px 20px #00000033;
+}
+
+.course-body{
+    background: #B53737;
+    color: white;
 }
 
 /* STUDY TIPS STYLING */
@@ -450,7 +455,7 @@ button a:hover {
     align-content: center;
 }
 
-/* PROFILE CARDS */
+/* CONNECT CARDS */
 .prof-name{
     font-size: 30px;
 	margin: 10px;
@@ -543,13 +548,10 @@ button a:hover {
 .content {
     position: relative;
 }
-/* content:before {
-	content: "";
-	position: absolute;
-	bottom: -20px;
-	height: 3px;
-	background-color: #3e3;
-	width: 70px;
-	left: 50%;
-	transform: translateX(-50%);
-} */
+
+/* MY PROFILE CARDS */
+
+.myprofile-card{
+    margin: 0 auto;
+    padding: 20px;
+}
