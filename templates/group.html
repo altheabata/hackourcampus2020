@@ -3,9 +3,9 @@
 
 {% block content %}
     <h1 class="general-heading">{{ organizer.first_name }}'s study group for {{ group.subject }} {{ group.course_number }}</h1>
-    <h3>Members</h3>
+    <h3 class="general-heading">Members</h3>
     {% for member in members %}
-        <h5>{{ member.first_name }} {{ member.last_name }}</h5>
-        <h6 class="text-muted">{{ member.email }}</h6>
+        <h5 class="general-heading">{{ member.first_name }} {{ member.last_name }}</h5>
+        <h6 class="text-muted general-heading">{{ member.email }}</h6>
     {% endfor %}
 {% endblock %}

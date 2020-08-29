@@ -579,5 +579,11 @@ a {
 
 .myprofile-card{
     margin: 0 auto;
-    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.myprofile-body{
+    background: #B53737;
+    margin: 20px;
 }
