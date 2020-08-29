@@ -205,3 +205,13 @@ def join_group(group_id):
         return "you're already a member of this group"
     groups.update_one({"_id": group["_id"]}, {"$push": {"members": session["email"]}})
     return redirect("/groups")
+
+@app.route("/group/<group_id>")
+@require_logged_in
+def group(group_id):
+    groups = mongo.db.groups
+    group = groups.find_one({"_id": ObjectId(group_id)})
+    users = mongo.db.users
+    organizer = users.find_one({"email": group["organizer"]})
+    members = users.find({"email": {"$in": group["members"]}})
+    return render_template("group.html", group=group, organizer=organizer, members=members)
